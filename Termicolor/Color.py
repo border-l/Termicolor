@@ -25,9 +25,7 @@ class Color(Foreground, Background, Styles):
         return iter(str(s.val["text"]))
 
     def __add__(s, other):
-        new_COLOR = Color(ALL=s.val.copy(), sp=s.sp)
-        new_COLOR.after(All.esc + str(other), sp=False)
-        return new_COLOR
+        return s.val["all"] + other
 
     def after(s, string, *nests, after="", sp=True):
         s.val["text", False] = s.sp*sp + str(string)
@@ -160,6 +158,5 @@ class Static:
     def __str__(s):
         return ""
         
-    def __call__(s, text):
-        s.val["text"] = text
-        return Color(ALL=s.val.copy(), sp=s.sp)
+    def __call__(s, text, *nests, after=""):
+        return Color(ALL=s.val.copy(), sp=s.sp)(text, *nests, after=after)
