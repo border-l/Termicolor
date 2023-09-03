@@ -2,7 +2,7 @@ Style = {
     "reset": "\033[0m",
     "bold": "\033[1m",
     "dim": "\033[2m",
-    "underline": "\033[3m",
+    "underline": "\033[4m",
     "blink": "\033[5m",
     "rapid_blink": "\033[6m",
     "inverse": "\033[7m",
