@@ -3,7 +3,7 @@ class All:
     next_key = 1
 
     def __init__(s, text, back, fore, style, space_b, space_a, padding_l, padding_r, applied):
-        s.exclusive_key = "C[[CLASS_ALL_APPLY_STYLES_HERE_" + str(All.next_key) + "]]C"
+        s.exclusive_key = f"C[[CLASS_ALL_APPLY_STYLES_HERE_{str(All.next_key)}]]C"
         All.next_key += 1
         s.text = text
         s.back = back

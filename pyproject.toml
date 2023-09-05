@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[metadata]
+name = "Termicolor"
+version = "1.0.0"
+description = "Simple, intuitive, chainable API for styling and coloring the terminal"
+long-description = "README.md"
+long-description-content-type = "text/markdown"
+author = "border-l"
+
+[tool.poetry]
+name = "Termicolor"
+version = "1.0"
+description = "Python styling and coloring for the terminal"
+authors = ["border-l"]
+packages = [{ include = "*", exclude = ["tests"] }]
+python-versions = "^3.6"
+classifiers = [
+    'Development Status :: 4 - Beta',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+colorama = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

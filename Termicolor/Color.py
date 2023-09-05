@@ -4,46 +4,46 @@ from .Styles import Styles
 from .All import All
 
 class Color(Foreground, Background, Styles):
-    def __init__(s, text="", *nests, after="", back="", fore="", style="", space_b="", space_a="", padding_l="", padding_r="", applied=lambda x, y: x, ALL=False, sp=" "):
+    def __init__(s, text="", *nests, after="", back="", fore="", style="", space_b="", space_a="", padding_l="", padding_r="", applied=lambda x, y: x, ALL=False, sp=" ", sp_a=True):
         s.sp = sp
         if isinstance(ALL, All):
             s.val = ALL
         else:
             s.val = All(text, back, fore, style, space_b, space_a, padding_l, padding_r, applied)
-        s(s.val["text"], *nests, after=after)
+        s(s.val["text"], *nests, after=after, sp_a=sp_a)
 
     def __str__(s):
         return s.val["all"]
     
-    def __call__(s, text, *nests, after="", sp=True):
+    def __call__(s, text, *nests, after="", sp_a=True):
         s.val["text"] = text
-        s.nest(*nests, sp=sp)
+        s.nest(*nests, sp_a=sp_a)
         s.val["text", False] = str(after)
         return s
     
     def __iter__(s):
-        return iter(str(s.val["text"]))
+        return iter(str(s.val["all"]))
 
     def __add__(s, other):
         return s.val["all"] + other
 
-    def after(s, string, *nests, after="", sp=True):
-        s.val["text", False] = s.sp*sp + str(string)
+    def after(s, string, *nests, after="", sp_a=True):
+        s.val["text", False] = s.sp*sp_a + str(string)
         s.nest(*nests)
         s.val["text", False] = str(after)
         return s
     
-    def before(s, string, *nests, after="", sp=True):
-        original = s.sp*sp + s.val["text"]
+    def before(s, string, *nests, after="", sp_a=True):
+        original = s.sp*sp_a + s.val["text"]
         s.val["text"] = string
         s.nest(*nests)
         s.val["text", False] = str(after) + original
         return s
     
-    def nest(s, *nests, sp=True):
+    def nest(s, *nests, sp_a=True):
         nested = ""
         for nest in nests:
-            nested += s.sp*sp + s.__nest(nest)
+            nested += s.sp*sp_a + s.__nest(nest)
         if len(nested) > 0:
             s.val["text"] += nested + str(All.esc) + s.val.attr()
         return s
@@ -77,7 +77,7 @@ class Color(Foreground, Background, Styles):
         s.padding(spaces, left=False, clear=clear)
 
     def clear(s, text=False, back=False, fore=False, style=False, space_b=False, space_a=False, padding_l=False, padding_r=False, applied=False):
-        s.val.clear(text, back, fore, style, space_b, space_a, padding_l, padding_r)
+        s.val.clear(text, back, fore, style, space_b, space_a, padding_l, padding_r, applied)
         return s
     
     def clear_space(s, b=True, a=True):
@@ -141,7 +141,7 @@ class Color(Foreground, Background, Styles):
 
     @property
     def ansi(s):
-        return s.val["back"] + s.val["fore"] + s.val["style"]
+        return f"{s.val['back']}{s.val['fore']}{s.val['style']}"
     
     def freeze(s):
         return Static(s.val.copy(), s.sp)

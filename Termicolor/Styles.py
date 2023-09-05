@@ -1,6 +1,6 @@
 class Styles:
     def style(s, style):
-        s.val["style", False] = "\033[" + str(style) + "m"
+        s.val["style", False] = f"\033[{str(style)}m"
         return s
     
     @property

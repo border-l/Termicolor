@@ -1,7 +1,7 @@
 class Foreground:
     def color(s, color):
         if color < 31 or color > 37: return
-        s.val["fore"] = "\033[" + str(color) + "m"
+        s.val["fore"] = f"\033[{str(color)}m"
         return s
     
     @property

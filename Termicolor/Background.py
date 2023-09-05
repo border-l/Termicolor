@@ -1,7 +1,7 @@
 class Background:
     def bg_color(s, color):
         if color < 40 or color > 47: return
-        s.val["back"] = "\033[" + str(color) + "m"
+        s.val["back"] = f"\033[{str(color)}m"
         return s
 
     @property
