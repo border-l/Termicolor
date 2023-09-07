@@ -3,6 +3,7 @@ Termicolor
 
 Termicolor is a package that offers an easy-to-use API for quickly applying colors to text. It is excellent for rapidly creating appropriate styles and allows for extensive reusability.
 
+The only dependency is Colorama, to ensure that escape characters work with Windows.
 
 Installation
 ------------
@@ -38,7 +39,7 @@ Alternatively, you can import `ansi`, which is more hands-on with styling, but s
 ```python
 from Termicolor import ansi
 
-styled_text = f"{ansi('red', 'bold', 'underline')} Hello World! {ansi('reset')}"
+styled_text = f"{ansi('red', 'bold', 'underline')} Hello, World! {ansi('reset')}"
 ```
 
 Even though Termicolor is very straightforward to get started with, it has many features which will be explained and demonstrated below.
@@ -73,10 +74,18 @@ print(warn("This is some serious text"))
 print(danger("This is some even more serious text"))
 
 # There's also a print method (but it doesnt take any parameters):
-warn("A print method does indeed exist").print()
+warn("Using print method").print()
 ```
 
+Of course, you can import these styles, allowing you to organize and define them in other files.
+
 ### Nesting & Adding new text
+
+Termicolor offers support for nesting, as well as appending and prepending text to what you have already initialized.
+
+
+
+### Setting Seperators
 
 ### Spacing & Padding
 
