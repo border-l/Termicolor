@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+src/Termicolor/All.py
+src/Termicolor/Ansi.py
+src/Termicolor/Attributes.py
+src/Termicolor/Background.py
+src/Termicolor/Color.py
+src/Termicolor/Foreground.py
+src/Termicolor/Styles.py
+src/Termicolor/__init__.py
+src/Termicolor.egg-info/PKG-INFO
+src/Termicolor.egg-info/SOURCES.txt
+src/Termicolor.egg-info/dependency_links.txt
+src/Termicolor.egg-info/requires.txt
+src/Termicolor.egg-info/top_level.txt
