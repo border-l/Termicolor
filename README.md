@@ -96,7 +96,7 @@ Optionally, you can also nest using the `nest` method.
 
 ```python
 nested_text = Color("World!").blue
-styled_text = Color("Hello,").nest(nested_text).green.bold
+styled_text = Color("Hello,").green.bold.nest(nested_text)
 ```
 
 Either of these can take several arguments to nest several separate strings.
@@ -104,14 +104,21 @@ Either of these can take several arguments to nest several separate strings.
 If you don't want to nest text, but would like to add it on, you can use either the `before` or `after` methods:
 
 ```python
-before_text = "Hello,"
-after_text = "World"
-main_text = Color().magenta.after(after_text).before(before_text)
+after_demo = Color("Hello,").magenta.after("World!")
+before_demo = Color("World!").magenta.before("Hello,")
 
-print(main_text)
+print(after_demo, before_demo)
 ```
 
 Both of these methods can also nest text, using the same approach.
+
+As a side note, you can delay passing in the text until later, by calling the `Color` instance after your styling:
+
+```python
+styled_text = Color().green.bold("Hello, World!")
+
+print(styled_text)
+```
 
 Other things to note:
 * To add text right after a pass in the keyword argument "after" to any of these methods.
