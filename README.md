@@ -1,7 +1,7 @@
 Termicolor
 ==========
 
-Termicolor is a package that offers an easy-to-use API for quickly applying colors to text. It is excellent for rapidly creating appropriate styles and allows for extensive reusability.
+Termicolor is a package that offers an easy-to-use API for quickly applying colors to text. It is excellent for swiftly creating appropriate styles and allows for extensive reusability.
 
 The only dependency is Colorama, to ensure that escape characters work with Windows.
 
