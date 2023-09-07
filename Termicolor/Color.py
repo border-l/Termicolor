@@ -4,12 +4,12 @@ from .Styles import Styles
 from .All import All
 
 class Color(Foreground, Background, Styles):
-    def __init__(s, text="", *nests, after="", back="", fore="", style="", space_b="", space_a="", padding_l="", padding_r="", applied=lambda x, y: x, ALL=False, sp=" ", sp_a=True):
+    def __init__(s, text="", *nests, after="", back="", fore="", style="", space_b="", space_a="", pad_b="", pad_a="", applied=lambda x, y: x, ALL=False, sp=" ", sp_a=True):
         s.sp = sp
         if isinstance(ALL, All):
             s.val = ALL
         else:
-            s.val = All(text, back, fore, style, space_b, space_a, padding_l, padding_r, applied)
+            s.val = All(text, back, fore, style, space_b, space_a, pad_b, pad_a, applied)
         s(s.val["text"], *nests, after=after, sp_a=sp_a)
 
     def __str__(s):
@@ -52,32 +52,34 @@ class Color(Foreground, Background, Styles):
         new_text = str(All.esc) + str(string)
         return new_text
     
-    def space(s, spaces, before=False, after=True, clear=True):
+    def space(s, spaces, before=True, after=True, clear=True):
         if before: s.val['space_b', clear] = spaces * " "
         if after: s.val['space_a', clear] = spaces * " "
         return s
     
     def space_b(s, spaces, clear=True):
-        s.space(spaces, before=True, after=False, clear=clear)
+        s.space(spaces, before=True, clear=clear)
         return s
     
     def space_a(s, spaces, clear=True):
-        s.space(spaces, before=True, after=False, clear=clear)
+        s.space(spaces, before=False, clear=clear)
         return s
     
-    def padding(s, spaces, left=True, right=True, clear=True):
-        if left: s.val["padding_l", clear] = spaces * " "
-        if right: s.val["padding_r", clear] = spaces * " "
+    def pad(s, spaces, before=True, after=True, clear=True):
+        if after: s.val["pad_b", clear] = spaces * " "
+        if before: s.val["pad_a", clear] = spaces * " "
         return s
     
-    def padding_l(s, spaces, clear=True):
-        s.padding(spaces, right=False, clear=clear)
+    def pad_b(s, spaces, clear=True):
+        s.pad(spaces, before=False, clear=clear)
+        return s
 
-    def padding_r(s, spaces, clear=True):
-        s.padding(spaces, left=False, clear=clear)
+    def pad_a(s, spaces, clear=True):
+        s.pad(spaces, after=False, clear=clear)
+        return s
 
-    def clear(s, text=False, back=False, fore=False, style=False, space_b=False, space_a=False, padding_l=False, padding_r=False, applied=False):
-        s.val.clear(text, back, fore, style, space_b, space_a, padding_l, padding_r, applied)
+    def clear(s, text=False, back=False, fore=False, style=False, space_b=False, space_a=False, pad_b=False, pad_a=False, applied=False):
+        s.val.clear(text, back, fore, style, space_b, space_a, pad_b, pad_a, applied)
         return s
     
     def clear_space(s, b=True, a=True):
@@ -85,9 +87,9 @@ class Color(Foreground, Background, Styles):
         if a: s.clear(space_a=True)
         return s
     
-    def clear_padding(s, l=True, r=True):
-        if l: s.clear(padding_l=True)
-        if r: s.clear(padding_r=True)
+    def clear_pad(s, l=True, r=True):
+        if l: s.clear(pad_b=True)
+        if r: s.clear(pad_a=True)
         return s
     
     def clear_text(s):
@@ -121,23 +123,23 @@ class Color(Foreground, Background, Styles):
         s.val.clear(True, True, True, True, True, True, True, True, True)
         return s
 
-    def new(s, new_text="", text=False, back=True, fore=True, style=True, space_b=True, space_a=True, padding_l=True, padding_r=True):
+    def new(s, new_text="", text=False, back=True, fore=True, style=True, space_b=True, space_a=True, pad_b=True, pad_a=True):
         all = All(s.val["text"] if text else new_text,
             s.val["back"] if back else "",
             s.val["fore"] if fore else "",
             s.val["style"] if style else "",
             s.val["space_b"] if space_b else "",
             s.val["space_a"] if space_a else "",
-            s.val["padding_l"] if padding_l else "",
-            s.val["padding_r"] if padding_r else "")
+            s.val["pad_b"] if pad_b else "",
+            s.val["pad_a"] if pad_a else "")
         return Color(ALL=all)
     
     def apply(s, func):
         s.val["applied"] = func
         return s
     
-    def print(s, *args):
-        print(s.val["all"], *args)
+    def print(s, *args, **kwargs):
+        print(s.val["all"], *args, **kwargs)
 
     @property
     def ansi(s):

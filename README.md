@@ -73,7 +73,7 @@ danger = Color().red.bold.freeze()
 print(warn("This is some serious text"))
 print(danger("This is some even more serious text"))
 
-# There's also a print method (but it doesnt take any parameters):
+# There's also a print method (it can take arguments):
 warn("Using print method").print()
 ```
 
@@ -83,11 +83,73 @@ Of course, you can import these styles, allowing you to organize and define them
 
 Termicolor offers support for nesting, as well as appending and prepending text to what you have already initialized.
 
+There is a few ways you can nest text, but the simplest way to do it is to include it in the constructor of your dominant style:
 
+```python
+nested_text = Color("World!").blue
+styled_text = Color("Hello,", nested_text).green.bold
+
+print(styled_text)
+```
+
+Optionally, you can also nest using the `nest` method.
+
+```python
+nested_text = Color("World!").blue
+styled_text = Color("Hello,").nest(nested_text).green.bold
+```
+
+Either of these can take several arguments to nest several separate strings.
+
+If you don't want to nest text, but would like to add it on, you can use either the `before` or `after` methods:
+
+```python
+before_text = "Hello,"
+after_text = "World"
+main_text = Color().magenta.after(after_text).before(before_text)
+
+print(main_text)
+```
+
+Both of these methods can also nest text, using the same approach.
+
+Other things to note:
+* To add text right after a pass in the keyword argument "after" to any of these methods.
+* You will notice there's an automatic space added as a separator when nesting or adding additional text, you can override it with the "sp_a" keyword argument by passing in false.
 
 ### Setting Seperators
 
+To configure the separator space that is automatically placed between added text, the keyword argument "sp" can be set to whatever character or string you want. If no space is desired, set it to an empty string. Here's an example:
+
+```python
+styled_text = Color("Hello, ", "World", sp="")
+
+print(styled_text) # Prints "Hello, World" instead of "Hello,  World" with two spaces
+```
+
+Additionally, you can remove or set a new separator by using these methods:
+* `new_sp`, takes the new separator as an argument
+* `remove_sp`, removes the separator
+
 ### Spacing & Padding
+
+With Termicolor, you can set spacing which is automatically added before and after but is a part of the styled string, or padding which adds spacing without it being styled. This is a simple demo:
+
+```python
+styled_text = Color("Hello, World!").red.pad(4).space(4)
+
+print(styled_text)
+```
+
+If you want to only add padding or spacing after or before using the `pad_b` or `pad_a` method, and `space_b` or `space_a` method.
+
+Note: padding or spacing **does** carry over when using the `freeze` method to reuse a style.
 
 ### Clear styling
 
+To clear whatever attributes have been set, you can use the `reset` method to clear everything, or one of these other methods to clear a specific attribute:
+
+* `clear_fore`, `clear_back`, or `clear_style` to clear foreground, background, or text formatting
+* `clear_pad`, or `clear_space` to clear padding or spacing
+* `clear_text` to clear any text that is set
+* `remove_sp` to remove the separator
