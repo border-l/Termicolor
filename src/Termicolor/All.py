@@ -56,7 +56,7 @@ class All:
         if space_a: s.space_a = ""
         if pad_b: s.pad_b = ""
         if pad_a: s.pad_a = ""
-        if applied: s.applied = ""
+        if applied: s.applied = lambda string: string
         s.update()
     
     def update(s):
