@@ -121,8 +121,8 @@ print(styled_text)
 ```
 
 Other things to note:
-* To add text right after any of these methods, pass in the keyword argument "after".
-* You will notice there's an automatic space added as a separator when nesting or adding additional text, you can override it with the "sp_a" keyword argument by passing in false.
+* To add text right after any of these methods, pass in the keyword argument "after" when calling the instance.
+* You will notice there's an automatic space added as a separator when nesting or adding additional text, you can override it by passing in false for the "sp" keyword argument to either the `after` or `before` method.
 
 ### Setting Seperators
 
