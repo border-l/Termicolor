@@ -122,7 +122,7 @@ print(styled_text)
 
 Other things to note:
 * To add text right after any of these methods, pass in the keyword argument "after" when calling the instance.
-* You will notice there's an automatic space added as a separator when nesting or adding additional text, you can override it by passing in false for the "sp" keyword argument to either the `after` or `before` method.
+* You will notice there's an automatic space added as a separator when nesting or adding additional text, you can override it by passing in false for the "sp_a" keyword argument to either the `after` or `before` method.
 
 ### Setting Seperators
 
@@ -143,12 +143,12 @@ Additionally, you can remove or set a new separator by using these methods:
 With Termicolor, you can set spacing which is automatically added before and after but is a part of the styled string, or padding which adds spacing without it being styled. This is a simple demo:
 
 ```python
-styled_text = Color("Hello, World!").red.padding(4).space(4)
+styled_text = Color("Hello, World!").red.pad(4).space(4)
 
 print(styled_text)
 ```
 
-If you want to only add padding or spacing after/left or before/right using the `padding_l` or `padding_r` method, and `space_b` or `space_a` method.
+If you want to only add padding or spacing after/right or before/left using the `pad_a` or `pad_b` method, and `space_b` or `space_a` method.
 
 Note: padding or spacing **does** carry over when using the `freeze` method to reuse a style.
 
