@@ -15,6 +15,9 @@ class Color(Foreground, Background, Styles):
     def __str__(s):
         return s.val["all"]
     
+    def __repr__(s):
+        return s.val["text"]
+    
     def __call__(s, text, *nests, after="", sp_a=True):
         s.val["text"] = text
         s.nest(*nests, sp_a=sp_a)
@@ -26,6 +29,9 @@ class Color(Foreground, Background, Styles):
 
     def __add__(s, other):
         return s.val["all"] + other
+    
+    def __mul__(s, times):
+        return s.val["all"] * times
 
     def after(s, string, *nests, after="", sp_a=True):
         s.val["text", False] = s.sp*sp_a + str(string)
