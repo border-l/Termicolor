@@ -72,9 +72,6 @@ danger = Color().red.bold.freeze()
 
 print(warn("This is some serious text"))
 print(danger("This is some even more serious text"))
-
-# There's also a print method (it can take arguments):
-warn("Using print method").print()
 ```
 
 Of course, you can import these styles, allowing you to organize and define them in other files.
