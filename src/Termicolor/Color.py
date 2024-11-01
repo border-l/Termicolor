@@ -47,11 +47,11 @@ class Color(Foreground, Background, Styles):
         return s
     
     def nest(s, *nests, sp_a=True):
-        nested = ""
-        for nest in nests:
-            nested += s.sp*sp_a + s.__nest(nest)
-        if len(nested) > 0:
-            s.val["text"] += nested + str(All.esc) + s.val.attr()
+        for i, nest in enumerate(nests):
+            if i % 2 == 0:
+                s.val["text"] += nest + str(All.esc) + s.val.attr()
+            else:
+                s.val["text"] += nest
         return s
     
     def __nest(s, string):
