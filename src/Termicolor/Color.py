@@ -49,14 +49,10 @@ class Color(Foreground, Background, Styles):
     def nest(s, *nests, sp_a=True):
         for i, nest in enumerate(nests):
             if i % 2 == 0:
-                s.val["text"] += nest + str(All.esc) + s.val.attr()
+                s.val["text"] += s.sp*sp_a + str(All.esc) + str(nest) + s.val.attr()
             else:
-                s.val["text"] += nest
+                s.val["text"] += s.sp*sp_a + nest
         return s
-    
-    def __nest(s, string):
-        new_text = str(All.esc) + str(string)
-        return new_text
     
     def space(s, spaces, before=True, after=True, clear=True):
         if before: s.val['space_b', clear] = spaces * " "

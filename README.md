@@ -98,6 +98,8 @@ styled_text = Color("Hello,").green.bold.nest(nested_text)
 
 Either of these can take several arguments to nest several separate strings.
 
+Note that when giving it several arguments it alternates between adding to string as nested and main level, and that automatically a separator is added, which you can configure with keyword argument `sp_a`.
+
 If you don't want to nest text, but would like to add it on, you can use either the `before` or `after` methods:
 
 ```python
